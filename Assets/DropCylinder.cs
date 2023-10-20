@@ -29,6 +29,11 @@ public class DropCylinder : MonoBehaviour
             {
                 Instantiate(obstacle, hitInfo.point, obstacle.transform.rotation);
 
+                foreach (GameObject a in agents)
+                {
+                    a.GetComponent<AIControl>().DetectNewObstacle(hitInfo.point);
+                }
+
             }
         }
 
