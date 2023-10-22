@@ -65,6 +65,7 @@ public class Graph
             Node thisNode = open[i];
             if (thisNode.getId() == endId)
             {
+                ReconstructPath(start, end);
                 return true;
             }
 
@@ -101,6 +102,20 @@ public class Graph
             }
         }
         return false;
+    }
+
+    public void ReconstructPath(Node startId, Node endId)
+    {
+        pathList.Clear();
+        pathList.Add(endId);
+
+        var p = endId.cameFrom;
+        while (p != startId && p != null)
+        {
+            pathList.Insert(0, p);
+            p = p.cameFrom;
+        }
+        pathList.Insert(0, startId);
 
     }
 
